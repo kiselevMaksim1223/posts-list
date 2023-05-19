@@ -1,20 +1,20 @@
 export type RequestStatusType = 'idle' | 'loading'
-export type InitialStateType = {
+export type InitialAppType = {
   // происходит ли сейчас взаимодействие с сервером
   status: RequestStatusType
   // если ошибка какая-то глобальная произойдёт - мы запишем текст ошибки сюда
   error: string | null
 }
 
-const initialState: InitialStateType = {
+const initialState: InitialAppType = {
   status: 'idle',
   error: null,
 }
 
 export const appReducer = (
-  state: InitialStateType = initialState,
+  state: InitialAppType = initialState,
   action: ActionsType
-): InitialStateType => {
+): InitialAppType => {
   switch (action.type) {
     case 'APP/SET-STATUS':
       return { ...state, status: action.status }
