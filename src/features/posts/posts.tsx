@@ -11,7 +11,7 @@ export type PostType = {
   body: string
 }
 
-const posts: PostType[] = [
+export const posts: PostType[] = [
   {
     userId: 1,
     id: 1,
@@ -20,7 +20,7 @@ const posts: PostType[] = [
   },
   {
     userId: 2,
-    id: 3,
+    id: 2,
     title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
     body: 'quia et suscipitsuscipit recusandae consequuntur expedita et cum\nreprehende',
   },
