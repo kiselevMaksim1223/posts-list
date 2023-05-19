@@ -35,7 +35,7 @@ const comments: CommentType[] = [
     id: 3,
     name: 'id labore ex et quam laborum',
     email: 'Eliseo@gardner.biz',
-    body: 'laudantium enim quasi est quidem mem quasi reiciend',
+    body: 'laudantium enim ',
   },
 ]
 
@@ -47,10 +47,10 @@ export const Post: FC<{ post: PostType }> = ({ post }) => {
   }
 
   return (
-    <Card key={post.id} style={{ width: '70%', marginBottom: '1rem' }}>
-      <Card.Header>
-        <Card.Img variant="left" src={ava} width={50} height={50} />
-        <Card.Title>{post.title}</Card.Title>
+    <Card key={post.id} style={{ width: '100%', margin: '0  auto 1rem', padding: '1rem' }}>
+      <Card.Header className={'d-flex align-items-center'}>
+        <Card.Img className="flex-shrink-0" variant="left" src={ava} width={50} height={50} />
+        <Card.Title className="flex-grow-1 ms-3 ">{post.title}</Card.Title>
       </Card.Header>
       <Card.Body>
         <Card.Text>{post.body}</Card.Text>
@@ -62,7 +62,7 @@ export const Post: FC<{ post: PostType }> = ({ post }) => {
           </ListGroup>
         )}
         <Button variant="secondary" onClick={toggleComments} className="mt-3">
-          {showComments ? 'Скрыть комментарии' : 'Комментарии'}
+          {showComments ? 'Hide comments' : 'Comments'}
         </Button>
       </Card.Body>
     </Card>

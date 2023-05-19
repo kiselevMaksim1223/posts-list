@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ListGroup } from 'react-bootstrap'
+import { Container, ListGroup } from 'react-bootstrap'
 
 import { Post } from './post/post'
 
@@ -15,8 +15,8 @@ const posts: PostType[] = [
   {
     userId: 1,
     id: 1,
-    title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-    body: 'quia et suscipitsuscipit recusandae consequuntur expedita et cum\nreprehende',
+    title: 'sunt aut facere repellat ',
+    body: 'quia et suscipitsuscipit ',
   },
   {
     userId: 2,
@@ -34,13 +34,13 @@ const posts: PostType[] = [
 
 export const Posts = () => {
   return (
-    <div>
-      <h1>Список постов</h1>
-      <ListGroup>
+    <Container fluid="md">
+      <h1>Posts</h1>
+      <ListGroup className={'mt-4'}>
         {posts.map(post => (
           <Post post={post} key={post.id} />
         ))}
       </ListGroup>
-    </div>
+    </Container>
   )
 }
