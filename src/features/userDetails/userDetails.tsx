@@ -2,10 +2,12 @@ import React from 'react'
 
 import { Card, ListGroup } from 'react-bootstrap'
 
+import { useAppSelector } from '../../app/store'
 import { Post } from '../posts/post/post'
-import { posts } from '../posts/posts'
 
 export const UserDetails = () => {
+  const posts = useAppSelector(state => state.posts)
+
   return (
     <div>
       <Card className="mb-4">

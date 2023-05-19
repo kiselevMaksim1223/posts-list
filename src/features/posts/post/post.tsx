@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react'
 
 import { Button, Card, ListGroup } from 'react-bootstrap'
 
+import { useAppSelector } from '../../../app/store'
 import ava from '../../../common/assets/Avatar.svg'
 import { PostType } from '../posts'
 
@@ -15,31 +16,8 @@ export type CommentType = {
   body: string
 }
 
-const comments: CommentType[] = [
-  {
-    postId: 1,
-    id: 1,
-    name: 'id labore ex et quam laborum',
-    email: 'Eliseo@gardner.biz',
-    body: 'laudantium enim quasi est quidem mem quasi reiciend',
-  },
-  {
-    postId: 2,
-    id: 2,
-    name: 'id labore ex et quam laborum',
-    email: 'Eliseo@gardner.biz',
-    body: 'laudantium enim quasi est quidem mem quasi reiciend',
-  },
-  {
-    postId: 3,
-    id: 3,
-    name: 'id labore ex et quam laborum',
-    email: 'Eliseo@gardner.biz',
-    body: 'laudantium enim ',
-  },
-]
-
 export const Post: FC<{ post: PostType }> = ({ post }) => {
+  const comments = useAppSelector(state => state.comments)
   const [showComments, setShowComments] = useState(false)
 
   const toggleComments = () => {
