@@ -3,7 +3,7 @@ import { put, takeLatest, call, all } from 'redux-saga/effects'
 import { setAppErrorAC, setPostsStatusAC } from '../../app/app-reducer'
 import { delay } from '../../common/utils/delay'
 
-import { PostType } from './posts'
+import { PostType } from './post/posts.type'
 import { FETCH_POSTS, setPostsAC } from './posts-reducer'
 import { postsApi } from './posts.api'
 

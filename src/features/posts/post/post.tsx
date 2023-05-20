@@ -1,49 +1,64 @@
 import React, { FC, useState } from 'react'
 
-import { Button, Card, Spinner } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
+import { Navigate } from 'react-router-dom'
 
 import { useAppSelector } from '../../../app/store'
 import ava from '../../../common/assets/Avatar.svg'
+import { SpinnerLoad } from '../../../common/components/spinner'
+import { setUserIdAC } from '../../userDetails/user-reducer'
 import { Comments } from '../comments/comments'
-import { fetchCommentsAC } from '../comments/comments-reducer'
-import { PostType } from '../posts'
+import { clearPostCommentsAC, fetchCommentsAC } from '../comments/comments-reducer'
 
-export type CommentType = {
-  postId: number
-  id: number
-  name: string
-  email: string
-  body: string
-}
+import { PostType } from './posts.type'
 
 export const Post: FC<{ post: PostType }> = ({ post }) => {
   const dispatch = useDispatch()
+  const allComments = useAppSelector(state => state.comments)
+  const postCommentsStatus = useAppSelector(state => state.app.commentsStatus)
 
-  const commentStatus = useAppSelector(state => state.app.commentsStatus)
   const [showComments, setShowComments] = useState(false)
+  const [navigate, setNavigate] = useState(false)
+
+  const postComments = allComments.filter(comments => comments.postId === post.id)
+  const isPostCommentsLoading = postCommentsStatus === post.id + 'loading'
 
   const toggleComments = () => {
     setShowComments(!showComments)
-    dispatch(fetchCommentsAC(post.id))
+
+    if (!showComments) {
+      dispatch(fetchCommentsAC(post.id))
+    } else dispatch(clearPostCommentsAC(post.id))
+  }
+
+  const onClickNavigate = () => {
+    setNavigate(true)
+    dispatch(setUserIdAC(post.userId))
+  }
+
+  if (navigate) {
+    return <Navigate to={`/posts/${post.id}`} />
   }
 
   return (
     <Card key={post.id} style={{ width: '100%', margin: '0  auto 1rem', padding: '1rem' }}>
       <Card.Header className={'d-flex align-items-center'}>
-        <Card.Img className="flex-shrink-0" variant="left" src={ava} width={50} height={50} />
+        <Card.Img
+          onClick={onClickNavigate}
+          role={'button'}
+          className="flex-shrink-0"
+          variant="left"
+          src={ava}
+          width={50}
+          height={50}
+        />
         <Card.Title className="flex-grow-1 ms-3 ">{post.title}</Card.Title>
       </Card.Header>
       <Card.Body>
         <Card.Text>{post.body}</Card.Text>
         {showComments &&
-          (commentStatus === 'loading' ? (
-            <div className="d-flex justify-content-center align-items-center mt-5">
-              <Spinner animation="grow" />
-            </div>
-          ) : (
-            <Comments />
-          ))}
+          (isPostCommentsLoading ? <SpinnerLoad /> : <Comments comments={postComments} />)}
         <Button variant="secondary" onClick={toggleComments} className="mt-3">
           {showComments ? 'Hide comments' : 'Comments'}
         </Button>
