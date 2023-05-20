@@ -4,8 +4,8 @@ type Company = {
   bs: string
 }
 
-export type User = {
-  id: number
+export type UserType = {
+  id: number | null
   name: string
   username: string
   email: string

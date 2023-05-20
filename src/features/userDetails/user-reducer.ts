@@ -1,28 +1,36 @@
-import { User } from './user'
+import { UserType } from './user.type'
 
-const initialState: User | null = {
-  id: 1,
-  name: 'Leanne Graham',
-  username: 'Bret',
-  email: 'Sincere@april.biz',
-  phone: '1-770-736-8031 x56442',
-  website: 'hildegard.org',
+const initialState: UserType = {
+  id: null,
+  name: '',
+  username: '',
+  email: '',
+  phone: '',
+  website: '',
   company: {
-    name: 'Romaguera-Crona',
-    catchPhrase: 'Multi-layered client-server neural-net',
-    bs: 'harness real-time e-markets',
+    name: 'a',
+    catchPhrase: '',
+    bs: '',
   },
 }
 
-type ActionsType = ReturnType<typeof setUserAC>
+export const SET_USER = 'SET-USER'
+export const FETCH_USER = 'FETCH-USER'
+const SET_USER_ID = 'SET-USER-ID'
 
-export const userReducer = (state: User = initialState, action: ActionsType) => {
+type ActionsType = ReturnType<typeof setUserAC> | ReturnType<typeof setUserIdAC>
+
+export const userReducer = (state: UserType = initialState, action: ActionsType): UserType => {
   switch (action.type) {
-    case 'SET-USER':
+    case SET_USER:
       return action.user
+    case SET_USER_ID:
+      return { ...state, id: action.userId }
     default:
       return state
   }
 }
 
-export const setUserAC = (user: User) => ({ type: 'SET-USER', user } as const)
+export const setUserAC = (user: UserType) => ({ type: SET_USER, user } as const)
+export const setUserIdAC = (userId: number) => ({ type: SET_USER_ID, userId } as const)
+export const fetchUserAC = (userId: number) => ({ type: FETCH_USER, userId } as const)

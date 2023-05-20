@@ -1,16 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-import { Card, Container, ListGroup } from 'react-bootstrap'
+import { Button, Card, Container } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '../../app/store'
-import { Post } from '../posts/post/post'
+import { Posts } from '../../common/components/posts/posts'
+import { SpinnerLoad } from '../../common/components/spinner'
+
+import { fetchUserAC } from './user-reducer'
+import { UserType } from './user.type'
 
 export const UserDetails = () => {
-  const posts = useAppSelector(state => state.posts)
-  const user = useAppSelector(state => state.user)
+  const dispatch = useDispatch()
+  const user = useAppSelector(state => state.user as UserType)
+  const userStatus = useAppSelector(state => state.app.userStatus)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    dispatch(fetchUserAC(user.id as number))
+  }, [])
+
+  const onClickBack = () => {
+    navigate('/posts')
+  }
+
+  if (userStatus === 'loading') {
+    return <SpinnerLoad />
+  }
 
   return (
     <Container fluid="md">
+      <Button variant="secondary" className={'mt-3 mb-3'} onClick={onClickBack}>
+        Back on posts
+      </Button>
       <Card className="mb-4">
         <Card.Header>User details</Card.Header>
         <Card.Body>
@@ -26,12 +49,8 @@ export const UserDetails = () => {
           </Card.Text>
         </Card.Body>
       </Card>
-      <h4>Список постов пользователя</h4>
-      <ListGroup>
-        {posts.map(post => (
-          <Post key={post.id} post={post} />
-        ))}
-      </ListGroup>
+      <h4>User posts</h4>
+      <Posts />
     </Container>
   )
 }
