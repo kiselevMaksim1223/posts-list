@@ -1,12 +1,13 @@
 import React, { FC, useState } from 'react'
 
-import { Button, Card, ListGroup } from 'react-bootstrap'
+import { Button, Card, Spinner } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
 
 import { useAppSelector } from '../../../app/store'
 import ava from '../../../common/assets/Avatar.svg'
+import { Comments } from '../comments/comments'
+import { fetchCommentsAC } from '../comments/comments-reducer'
 import { PostType } from '../posts'
-
-import { Comment } from './comment/comment'
 
 export type CommentType = {
   postId: number
@@ -17,11 +18,14 @@ export type CommentType = {
 }
 
 export const Post: FC<{ post: PostType }> = ({ post }) => {
-  const comments = useAppSelector(state => state.comments)
+  const dispatch = useDispatch()
+
+  const commentStatus = useAppSelector(state => state.app.commentsStatus)
   const [showComments, setShowComments] = useState(false)
 
   const toggleComments = () => {
     setShowComments(!showComments)
+    dispatch(fetchCommentsAC(post.id))
   }
 
   return (
@@ -32,13 +36,14 @@ export const Post: FC<{ post: PostType }> = ({ post }) => {
       </Card.Header>
       <Card.Body>
         <Card.Text>{post.body}</Card.Text>
-        {showComments && (
-          <ListGroup className="mt-3">
-            {comments.map(comment => (
-              <Comment comment={comment} key={comment.id} />
-            ))}
-          </ListGroup>
-        )}
+        {showComments &&
+          (commentStatus === 'loading' ? (
+            <div className="d-flex justify-content-center align-items-center mt-5">
+              <Spinner animation="grow" />
+            </div>
+          ) : (
+            <Comments />
+          ))}
         <Button variant="secondary" onClick={toggleComments} className="mt-3">
           {showComments ? 'Hide comments' : 'Comments'}
         </Button>
