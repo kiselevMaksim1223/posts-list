@@ -25,14 +25,14 @@ export const DropDownMenu: FC<DropDownMenuType> = ({ showMenu, callBack }) => {
           <ListGroup variant="flush" className={'fs-5'}>
             <ListGroup.Item>
               <Nav.Item>
-                <NavLink onClick={callBack} to="/posts">
+                <NavLink className={'text-decoration-none'} onClick={callBack} to="/posts">
                   Posts
                 </NavLink>
               </Nav.Item>
             </ListGroup.Item>
             <ListGroup.Item>
               <Nav.Item>
-                <NavLink onClick={callBack} to="/about">
+                <NavLink className={'text-decoration-none'} onClick={callBack} to="/about">
                   About me
                 </NavLink>
               </Nav.Item>

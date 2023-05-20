@@ -32,7 +32,7 @@ export const Post: FC<{ post: PostType }> = ({ post }) => {
   }
 
   const onClickNavigate = () => {
-    navigate(`/posts/${post.id}`)
+    navigate(`/posts/${post.userId}`)
     dispatch(setUserIdAC(post.userId))
   }
 

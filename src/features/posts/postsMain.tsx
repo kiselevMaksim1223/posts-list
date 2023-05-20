@@ -21,7 +21,7 @@ export const PostsMain = () => {
 
   return (
     <Container fluid="md">
-      <h1>Posts</h1>
+      <h1 className={'mt-2'}>Posts</h1>
       <Posts />
     </Container>
   )

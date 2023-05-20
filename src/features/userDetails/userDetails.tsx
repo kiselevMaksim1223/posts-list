@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 
 import { Button, Card, Container } from 'react-bootstrap'
+import { IoReturnDownBack } from 'react-icons/io5'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '../../app/store'
 import { Posts } from '../../common/components/posts/posts'
 import { SpinnerLoad } from '../../common/components/spinner'
+import { cleanPostsAC } from '../posts/posts-reducer'
 
 import { fetchUserAC } from './user-reducer'
 import { UserType } from './user.type'
@@ -19,6 +21,11 @@ export const UserDetails = () => {
 
   useEffect(() => {
     dispatch(fetchUserAC(user.id as number))
+
+    //cleanup posts data then unmount
+    return () => {
+      dispatch(cleanPostsAC())
+    }
   }, [])
 
   const onClickBack = () => {
@@ -32,7 +39,7 @@ export const UserDetails = () => {
   return (
     <Container fluid="md">
       <Button variant="secondary" className={'mt-3 mb-3'} onClick={onClickBack}>
-        Back on posts
+        <IoReturnDownBack size={20} />
       </Button>
       <Card className="mb-4">
         <Card.Header>User details</Card.Header>

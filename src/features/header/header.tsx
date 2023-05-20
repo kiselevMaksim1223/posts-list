@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import { Button, Container, Navbar } from 'react-bootstrap'
+import { CiMenuBurger } from 'react-icons/ci'
 
 import { DropDownMenu } from './dropDownMenu/dropDownMenu'
 
@@ -14,8 +15,8 @@ export const Header = () => {
   return (
     <Navbar expand="lg" variant="dark" bg="dark">
       <Container>
-        <Button variant="outline-info" onClick={handleToggleMenu}>
-          Menu
+        <Button className={'px-2'} variant="outline-info" onClick={handleToggleMenu}>
+          <CiMenuBurger size={20} />
         </Button>{' '}
         <DropDownMenu showMenu={showMenu} callBack={handleToggleMenu} />
       </Container>
