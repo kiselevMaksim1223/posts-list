@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 
 import { Button, Card } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '../../../app/store'
 import ava from '../../../common/assets/Avatar.svg'
@@ -17,9 +17,8 @@ export const Post: FC<{ post: PostType }> = ({ post }) => {
   const dispatch = useDispatch()
   const allComments = useAppSelector(state => state.comments)
   const postCommentsStatus = useAppSelector(state => state.app.commentsStatus)
-
+  const navigate = useNavigate()
   const [showComments, setShowComments] = useState(false)
-  const [navigate, setNavigate] = useState(false)
 
   const postComments = allComments.filter(comments => comments.postId === post.id)
   const isPostCommentsLoading = postCommentsStatus === post.id + 'loading'
@@ -33,12 +32,8 @@ export const Post: FC<{ post: PostType }> = ({ post }) => {
   }
 
   const onClickNavigate = () => {
-    setNavigate(true)
+    navigate(`/posts/${post.id}`)
     dispatch(setUserIdAC(post.userId))
-  }
-
-  if (navigate) {
-    return <Navigate to={`/posts/${post.id}`} />
   }
 
   return (
