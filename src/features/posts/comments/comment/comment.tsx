@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import { ListGroup } from 'react-bootstrap'
 
-import { CommentType } from '../../post/post'
+import { CommentType } from '../comments.type'
 
 export const Comment: FC<{ comment: CommentType }> = ({ comment }) => {
   return (

@@ -1,14 +1,11 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import { ListGroup } from 'react-bootstrap'
 
-import { useAppSelector } from '../../../app/store'
-
 import { Comment } from './comment/comment'
+import { CommentType } from './comments.type'
 
-export const Comments = () => {
-  const comments = useAppSelector(state => state.comments)
-
+export const Comments: FC<{ comments: CommentType[] }> = ({ comments }) => {
   return (
     <ListGroup className="mt-3">
       {comments.map(comment => (
