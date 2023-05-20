@@ -1,18 +1,4 @@
-export type RequestStatusType = 'idle' | 'loading'
-export type InitialAppType = {
-  // происходит ли сейчас взаимодействие с сервером
-  userStatus: RequestStatusType
-  postsStatus: RequestStatusType
-  commentsStatus: string
-  // если ошибка какая-то глобальная произойдёт - мы запишем текст ошибки сюда
-  error: string | null
-}
-
-type ActionsType =
-  | ReturnType<typeof setPostsStatusAC>
-  | ReturnType<typeof setAppErrorAC>
-  | ReturnType<typeof setCommentsStatusAC>
-  | ReturnType<typeof setUserStatusAC>
+import { InitialAppType, RequestStatusType } from './app.type'
 
 const initialState: InitialAppType = {
   userStatus: 'idle',
@@ -25,6 +11,12 @@ const SET_USER_STATUS = 'SET-USER-STATUS'
 const SET_POSTS_STATUS = 'SET-POSTS-STATUS'
 const SET_COMMENTS_STATUS = 'SET-COMMENTS-STATUS'
 const SET_ERROR = 'SET-ERROR'
+
+type ActionsType =
+  | ReturnType<typeof setPostsStatusAC>
+  | ReturnType<typeof setAppErrorAC>
+  | ReturnType<typeof setCommentsStatusAC>
+  | ReturnType<typeof setUserStatusAC>
 
 export const appReducer = (
   state: InitialAppType = initialState,

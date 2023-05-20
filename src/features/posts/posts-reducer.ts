@@ -2,10 +2,11 @@ import { PostType } from './post/posts.type'
 
 const initialState: PostType[] = []
 
-type ActionsType = ReturnType<typeof setPostsAC> | ReturnType<typeof cleanPostsAC>
 export const SET_POSTS = 'SET-POSTS'
 export const FETCH_POSTS = 'FETCH-POSTS'
 export const CLEAN_POSTS = 'CLEAN-POSTS'
+
+type ActionsType = ReturnType<typeof setPostsAC> | ReturnType<typeof cleanPostsAC>
 
 export const postsReducer = (state: PostType[] = initialState, action: ActionsType): PostType[] => {
   switch (action.type) {

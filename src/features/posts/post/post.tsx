@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '../../../app/store'
 import ava from '../../../common/assets/Avatar.svg'
-import { SpinnerLoad } from '../../../common/components/spinner'
+import { SpinnerLoad } from '../../../common/components/spinner/spinner'
 import { setUserIdAC } from '../../userDetails/user-reducer'
 import { Comments } from '../comments/comments'
 import { clearPostCommentsAC, fetchCommentsAC } from '../comments/comments-reducer'

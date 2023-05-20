@@ -4,7 +4,7 @@ import { ListGroup } from 'react-bootstrap'
 
 import { useAppSelector } from '../../../app/store'
 import { Post } from '../../../features/posts/post/post'
-import { SpinnerLoad } from '../spinner'
+import { SpinnerLoad } from '../spinner/spinner'
 
 export const Posts = () => {
   const posts = useAppSelector(state => state.posts)
