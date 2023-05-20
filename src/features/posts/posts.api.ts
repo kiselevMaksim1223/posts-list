@@ -1,6 +1,6 @@
 import { instance } from '../../common/api/instans.api'
 
-import { PostType } from './post/posts.type'
+import { PostType } from './posts.type'
 
 export const postsApi = {
   fetchPosts(userId?: number) {

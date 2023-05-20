@@ -2,9 +2,10 @@ import React from 'react'
 
 import { ListGroup } from 'react-bootstrap'
 
-import { useAppSelector } from '../../../app/store'
-import { Post } from '../../../features/posts/post/post'
-import { SpinnerLoad } from '../spinner/spinner'
+import { useAppSelector } from '../../app/store'
+import { SpinnerLoad } from '../../common/components/spinner/spinner'
+
+import { Post } from './post/post'
 
 export const Posts = () => {
   const posts = useAppSelector(state => state.posts)

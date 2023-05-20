@@ -1,4 +1,4 @@
-import { PostType } from './post/posts.type'
+import { PostType } from './posts.type'
 
 const initialState: PostType[] = []
 

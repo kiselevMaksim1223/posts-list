@@ -1,5 +1,5 @@
 import { instance } from '../../common/api/instans.api'
-import { PostType } from '../posts/post/posts.type'
+import { PostType } from '../posts/posts.type'
 
 import { UserType } from './user.type'
 

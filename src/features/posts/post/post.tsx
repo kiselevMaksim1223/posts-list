@@ -10,8 +10,7 @@ import { SpinnerLoad } from '../../../common/components/spinner/spinner'
 import { setUserIdAC } from '../../userDetails/user-reducer'
 import { Comments } from '../comments/comments'
 import { clearPostCommentsAC, fetchCommentsAC } from '../comments/comments-reducer'
-
-import { PostType } from './posts.type'
+import { PostType } from '../posts.type'
 
 export const Post: FC<{ post: PostType }> = ({ post }) => {
   const dispatch = useDispatch()

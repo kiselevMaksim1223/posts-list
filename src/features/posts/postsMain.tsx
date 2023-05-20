@@ -3,8 +3,7 @@ import React, { useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 
-import { Posts } from '../../common/components/posts/posts'
-
+import { Posts } from './posts'
 import { cleanPostsAC, fetchPostsAC } from './posts-reducer'
 
 export const PostsMain = () => {

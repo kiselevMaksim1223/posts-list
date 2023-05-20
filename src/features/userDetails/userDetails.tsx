@@ -6,8 +6,8 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '../../app/store'
-import { Posts } from '../../common/components/posts/posts'
 import { SpinnerLoad } from '../../common/components/spinner/spinner'
+import { Posts } from '../posts/posts'
 import { cleanPostsAC } from '../posts/posts-reducer'
 
 import { fetchUserAC } from './user-reducer'

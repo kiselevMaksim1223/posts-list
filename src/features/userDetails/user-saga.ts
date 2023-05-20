@@ -2,8 +2,8 @@ import { put, takeLatest, call, all } from 'redux-saga/effects'
 
 import { setAppErrorAC, setPostsStatusAC, setUserStatusAC } from '../../app/app-reducer'
 import { delay } from '../../common/utils/delay'
-import { PostType } from '../posts/post/posts.type'
 import { setPostsAC } from '../posts/posts-reducer'
+import { PostType } from '../posts/posts.type'
 
 import { FETCH_USER, setUserAC } from './user-reducer'
 import { userApi } from './user.api'
