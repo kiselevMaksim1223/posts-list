@@ -12,7 +12,7 @@ export const postsReducer = (state: PostType[] = initialState, action: ActionsTy
   switch (action.type) {
     case SET_POSTS:
       return action.posts
-    case 'CLEAN-POSTS':
+    case CLEAN_POSTS:
       return (state = [])
     default:
       return state

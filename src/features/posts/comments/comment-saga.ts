@@ -15,7 +15,6 @@ function* fetchCommentsWorker(action: { type: string; postId: number }) {
 
     yield put(setCommentsAC(res.data))
   } catch (e: any) {
-    console.log(e)
     yield put(setAppErrorAC(e.message))
   } finally {
     yield put(setCommentsStatusAC(action.postId, 'idle'))
