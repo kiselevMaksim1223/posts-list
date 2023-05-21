@@ -1,7 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import './App.css'
 import { Route, Routes, Navigate } from 'react-router-dom'
 
 import { About } from '../features/about/about'
@@ -11,7 +10,7 @@ import { UserDetails } from '../features/userDetails/userDetails'
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Header />
       <Routes>
         <Route path={'/'} element={<Navigate to={'/posts'} />} />
@@ -21,7 +20,7 @@ function App() {
         <Route path={'/404'} element={<div>Page not found 404</div>} />
         <Route path={'*'} element={<Navigate to={'/404'} />} />
       </Routes>
-    </div>
+    </>
   )
 }
 
